@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 from urllib2 import urlopen
+from time import sleep # be nice
 
 BASE_URL = "http://www.chicagoreader.com"
 
@@ -20,3 +21,16 @@ def get_category_winner(category_url):
 def make_soup(url):
 	html = urlopen(url).read()
 	soup = BeautifulSoup(html, "lxml")
+	
+if __name__ == '__main__':
+	food_n_drink = ("http://www.chicagoreader.com/chicago/best-of-chicago-2011-food-drink/BestOf?oid=4106228")
+	categories = get_category_links(food_n_drink)
+	
+	data = [] #list to store dicts
+	
+	for category in categories:
+		winner = get_category_winner(category)
+		data.append(winner)
+		sleep(1)
+		
+	print data
