@@ -8,8 +8,8 @@ def convert(file):
 	# Get the CSV filename and open the file
 	filename = file[0]
 	print "Reading File: " ,filename
-	with open(filename, 'r') as f:
-		reader = csv.reader(f)
+	with open(filename, 'rU') as f:
+		reader = csv.reader(f, dialect=csv.excel)
 		csv_reader = csv.DictReader(f,fieldnames)
 		
 	# JSON
